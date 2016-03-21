@@ -1,4 +1,4 @@
-/** Exceptions.h
+/** Chain.h
  * Create a Chain with template<T> and define some common methods.
  * Author: zclaiqcc
  * Blog: zclaiqcc.github.io
