@@ -37,9 +37,18 @@ private:
 template<class T>
 class BinaryTree {
 public:
-
+	BinaryTree() { root = 0; }
+	~BinaryTree() {};
+	bool IsEmpty() { return root == 0; }
+	bool Root(T& x) const;
+	void MakeTree(const T& element, BinaryTree<T>& left, BinaryTree<T>& right);
+	void BreakTree(T& element, BinaryTree<T>& left, BinaryTree<T>& right);
+	void PreOrder() { root->PreOrder(); }
+	void InOrder() { root->InOrder(); }
+	void PostOrder() { root->PostOrder(); }
+	void LevelOrder() { root->LevelOrder(); }
 private:
-
+	BinaryTreeNode<T>* root;
 };
 
 #endif
@@ -98,4 +107,37 @@ BinaryTreeNode<T>::LevelOrder()
 
 		if (!queue.IsEmpty()) queue.Delete(t);
 	}
+}
+
+template<class T>
+inline bool 
+BinaryTree<T>::Root(T & x) const
+{
+	if (root) {
+		x = root->data;
+		return true;
+	}
+	return false;
+}
+
+template<class T>
+inline void 
+BinaryTree<T>::MakeTree(const T & element, BinaryTree<T>& left, BinaryTree<T>& right)
+{
+	root->data = element;
+	root->leftChild = left;
+	root->rightChild = right;
+}
+
+template<class T>
+inline void 
+BinaryTree<T>::BreakTree(T & element, BinaryTree<T>& left, BinaryTree<T>& right)
+{
+	if (!root) throw BadInput();
+
+	element = root->data;
+	left.root = root->leftChild;
+	right.root = root->rightChild;
+
+	delete root;
 }
