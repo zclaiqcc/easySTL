@@ -28,8 +28,8 @@ public:
 	OutOfBounds() = default;
 };
 
-class BadInput() {
+class BadInput {
 	BadInput() = default;
-}
+};
 
 #endif

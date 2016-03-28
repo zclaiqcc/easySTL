@@ -21,14 +21,14 @@ public:
 	bool IsFull() const { return front == (rear + 1) % MaxSize; }
 	T First() const;
 	T Last() const;
-	Queue<T>& Add(const T& x);
+	Queue<T>& Add(T* x);
 	Queue<T>& Delete(T& x);
 
 private:
 	int front;
 	int rear;
 	int MaxSize;
-	T* Queue;
+	T* queue;
 };
 
 #endif
@@ -37,7 +37,7 @@ template<class T>
 inline Queue<T>::Queue(int MaxQueueSize)
 {
 	MaxSize = MaxQueueSize + 1; // to ensure the maxLen is really the maxLen, instead of maxLen - 1, for IsEmpty() would have the same condition with IsFull()
-	queue = new T*[MaxSize];
+	queue = new T[MaxSize];
 	front = rear = 0;
 }
 
@@ -59,7 +59,7 @@ Queue<T>::Last() const
 
 template<class T>
 inline Queue<T>& 
-Queue<T>::Add(const T & x)
+Queue<T>::Add(T * x)
 {
 	if (IsFull()) throw NoMem();
 	rear = (rear + 1) % MaxSize;
